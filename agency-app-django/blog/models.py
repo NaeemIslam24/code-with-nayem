@@ -17,7 +17,7 @@ class Post(models.Model):
       body = RichTextField()
       author = models.ForeignKey(User, blank=True,on_delete= models.CASCADE, related_name='blog_post')
       slug = models.SlugField(blank=True,null=True)
-      active = models.BooleanField(default=False)
+      active = models.BooleanField(default=True)
       published = models.DateTimeField(default=timezone.now)
       created = models.DateTimeField(auto_now_add=True)
 
