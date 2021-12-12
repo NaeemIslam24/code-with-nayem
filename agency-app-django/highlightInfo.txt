@@ -1,0 +1,18 @@
+1/ add it to base.html head
+<!-- highlight code on page js cdn -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+2/ add it to base.html ending part
+<!-- highlight code on page css cdn -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.3.1/styles/monokai-sublime.css">
+
+
+3/ code must be in the midde
+<pre>
+   <code>
+     
+    Here code
+
+  </code>
+</pre>
