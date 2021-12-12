@@ -152,3 +152,5 @@ def create_post(request):
         'post_form': post_form
     }
     return render(request, template_name=template, context=context)
+
+print('hi')
