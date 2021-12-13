@@ -153,3 +153,4 @@ def create_post(request):
     }
     return render(request, template_name=template, context=context)
 
+print('hello')
