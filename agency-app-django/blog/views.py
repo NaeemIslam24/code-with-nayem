@@ -6,7 +6,59 @@ from . models import *
 from .forms import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.views import View
+from django.db.models import Q
 
+
+class Search(View):
+
+    def post(self, request, format=None):
+        data = self.request.data
+        str = data['str']
+        q = (Q(headline__icontains=str)) | (Q(body__icontains=str)) | (Q(catagory__icontains=str))
+        queryset = Post.objects.filter(active=True)
+        queryset = queryset.filter(q)
+        # serializer = Home_serializer(queryset, many=True)
+        # return Response(serializer.data)
+        context = {
+            'search': queryset
+        }
+        return render(request, 'blog.html', context=context)
+
+def search(request):
+    template = 'search.html'
+    top_header = Top_header.objects.order_by()
+    header = Header.objects.order_by()
+    top_footer1 = Top_footer1.objects.order_by()
+    top_footer2 = Top_footer2.objects.order_by()
+    top_footer3 = Top_footer3.objects.order_by()
+    top_footer4 = Top_footer4.objects.order_by()
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        post = Post.objects.filter(headline__contains=searched)
+
+        context={
+            'searched':searched,
+            'posts': post,
+            'top_headerdata': top_header,
+            'headerdata': header,
+            'footer1': top_footer1,
+            'footer2': top_footer2,
+            'footer3': top_footer3,
+            'footer4': top_footer4,
+        }
+        return render(request, template_name=template, context=context)
+    else:
+        context={
+            'top_headerdata': top_header,
+            'headerdata': header,
+            'footer1': top_footer1,
+            'footer2': top_footer2,
+            'footer3': top_footer3,
+            'footer4': top_footer4,
+
+        }
+        return render(request, template_name=template, context=context)
 
 
 def blog(request):
@@ -137,6 +189,8 @@ def edit_post(request, pk, sl):
     }
 
     return render(request, template_name=template, context=context)
+
+
 
 
 @login_required(login_url='blog')

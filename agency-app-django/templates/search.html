@@ -6,31 +6,14 @@
 {% endblock %}
 {% block blogactive %} active {% endblock %}
 {% block content %}
+<br/>
+<br/>
+<br/>
+<br/>
 
-  <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <ol>
-          <li><a href="{% url 'index'%}">Home</a></li>
-          <li>Blog</li>
-          
-        </ol>
-        <h2>Blog</h2>
-
-                {% if request.user.is_superuser and request.user.is_authenticated  %}
-                     <h2><a class="btn btn-success mt-3 justify-content-center" href="{% url 'blog:create_post' %}"> Create Post </a></h2>
-    
-                  
-                   
-                {% endif %}
-
-      </div>
-    </section><!-- End Breadcrumbs -->
-
-    <!-- ======= Blog Section ======= -->
+      {% if posts %}
+             <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
       <div class="container" data-aos="fade-up">
 
@@ -75,7 +58,7 @@
             </article><!-- End blog entry -->
            {% endfor %}
 
-            
+
 
 
           </div><!-- End blog entries list -->
@@ -141,9 +124,12 @@
         {% include 'paginator.html' with page_ob=posts %}
       </div>
     </section><!-- End Blog Section -->
+      {% else %}
+           <h2 class="text-center"> Opps!  no data with <span class="text-danger"> {{searched}}🥺 <span/> </h2><br/>
+      {% endif %}
 
-   
+<br/>
 
-  </main><!-- End #main -->
+
 
 {% endblock %}
