@@ -139,6 +139,8 @@ def edit_post(request, pk, sl):
     return render(request, template_name=template, context=context)
 
 
+
+
 @login_required(login_url='blog')
 def create_post(request):
     template = 'create_post.html'
