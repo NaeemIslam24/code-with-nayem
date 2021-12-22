@@ -151,7 +151,7 @@ MESSAGE_TAGS = {
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
-        'height': 300,
+        'height': 500,
         'width': '100%',
     },
 }
