@@ -39,11 +39,10 @@ INSTALLED_APPS = [
     'header',
     'footer',
     'account.apps.AccountConfig',
+    # external apps
     'ckeditor',
     'crispy_forms',
-
-
-
+    'rest_framework',
 
 
 ]
@@ -167,3 +166,11 @@ EMAIL_HOST_PASSWORD = 'Your Pass'
 
 #  this link is to make low secure gmail. otheroise it will make problem to reset pass
 # https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4M0JGTr-qpzn5JnINlHnw3DkJt5PHvtxeGBpEO7bCuY8eDOllo4Vqs8c-YRkiCARAvutg40dT0erdNpT5U4XzSkFV_t8Q
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
