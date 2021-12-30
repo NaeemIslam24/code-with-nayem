@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from rest_framework.schemas import get_schema_view # default schema for the API
+from rest_framework.documentation import include_docs_urls # schema
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('index.urls')),
@@ -16,5 +17,14 @@ urlpatterns = [
     path('portfolio/', include('portfolio.urls')),
     path('account/', include('account.urls')),
     path('blog-api/', include('blog_api.urls')),
+    path('docs/', include_docs_urls(title='AgencyAPI')),
+
+    # default schema for the API
+    path('schema/', get_schema_view(
+        title='Agency API',
+        description = 'API for the agency API',
+        version = '1.0.0'
+    ), name = 'openapi-schema'),
+
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
