@@ -13,7 +13,7 @@ from .serializers import Post_serializer
 
 
 
-#custom permission for edit post
+#custom permission for edit post. the user write the post will be caught
 class PostUserWritePermission(BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:

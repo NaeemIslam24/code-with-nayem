@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 # pass reset
 from django.contrib.auth import views as auth_view
+from rest_framework.authtoken.views import obtain_auth_token 
+
 
 urlpatterns = [
 
@@ -28,4 +30,7 @@ urlpatterns = [
     path('',views.Account_api.as_view(), name='account'),
     path('login/',views.Login_api.as_view(), name='login'),
     # path('profile/', views.Profile_api.as_view(), name='profile'),
+
+    #authentiation
+    path('api-token/',obtain_auth_token),
 ]
