@@ -15,7 +15,7 @@ SECRET_KEY = 'qo9_7qg01g3slqi)y%j_b18p8wuu6#3k-=tp6=19hn%@6zz3i4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['codewithnayem.herokuapp.com', 'localhost', '127.0.0.1:8000/']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -162,8 +162,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "Your mail"
-EMAIL_HOST_PASSWORD = 'Your Pass'
+EMAIL_HOST_USER = "stackpro.org@gmail.com"
+EMAIL_HOST_PASSWORD = 'nrnrnrnr1234'
 
 #  this link is to make low secure gmail. otheroise it will make problem to reset pass
 # https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4M0JGTr-qpzn5JnINlHnw3DkJt5PHvtxeGBpEO7bCuY8eDOllo4Vqs8c-YRkiCARAvutg40dT0erdNpT5U4XzSkFV_t8Q
