@@ -258,7 +258,7 @@ def userlogout(request):
 
 def sent_registation_mail(email, token, username):
     subject = 'Your accounts need to be verified'
-    message = f'Hi {username}! Here is the CODE  "{token}" please click the link to verify your account http://127.0.0.1:8000/verify/{token}'
+    message = f'Hi {username}! welcome to Stack Pro. Here is the verification CODE  {token}'
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
