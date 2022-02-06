@@ -154,14 +154,19 @@ def authlogin(request):
         psd = request.POST.get('password')
         user = authenticate(request, username=uname, password=psd)
         profile = Profile.objects.filter(user=user).first()
-        if not profile.is_verified:
-            messages.error(request, 'Your account not verified check your mail')
-            return redirect('login')
-        if profile is not None:
-            login(request, user)
-            return redirect('profile')
-        else:
-            messages.error(request, 'Invalid password or username')
+        try:
+            if not profile.is_verified:
+                messages.error(request, 'Your account not verified check your mail')
+                return redirect('login')
+            if profile is not None:
+                login(request, user)
+                return redirect('profile')
+            else:
+                messages.error(request, 'Invalid password or username')
+
+        except Exception:
+            messages.error(request, 'No profile for Superuser')
+            return  redirect('login')
 
     return render(request, template_name=template, context=context)
 
@@ -200,20 +205,25 @@ def profile(request):
     top_footer2 = Top_footer2.objects.order_by()
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
-    profile = request.user.profile
+    try:
+        profile = request.user.profile
 
 
 
 
-    context = {
-        'top_headerdata': top_header,
-        'headerdata': header,
-        'footer1': top_footer1,
-        'footer2': top_footer2,
-        'footer3': top_footer3,
-        'footer4': top_footer4,
-        'profile': profile,
-    }
+        context = {
+            'top_headerdata': top_header,
+            'headerdata': header,
+            'footer1': top_footer1,
+            'footer2': top_footer2,
+            'footer3': top_footer3,
+            'footer4': top_footer4,
+            'profile': profile,
+        }
+    except Exception:
+        messages.error(request, 'No profile for Superuser')
+        return redirect('login')
+
 
     return render(request, template_name=template, context=context)
 
