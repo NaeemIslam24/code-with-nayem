@@ -8,6 +8,7 @@ from django.views import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+<<<<<<< HEAD
 from . serializers import Contact_serializer
 
 class Contact_api(APIView):
@@ -24,6 +25,24 @@ class Contact_api(APIView):
             contact.message = massage
             contact.save()
             return Response({"success": "Contact has been sent"})
+=======
+# from . serializers import Contact_serializer
+
+# class Contact_api(APIView):
+#     def post(self, request, *args, **kwargs):
+#         if request.method == 'POST':
+#             name = request.data['name']
+#             email = request.data['email']
+#             subject = request.data['subject']
+#             massage = request.data['massage']
+#             contact = Contact()
+#             contact.name = name
+#             contact.email = email
+#             contact.subject = subject
+#             contact.message = massage
+#             contact.save()
+#             return Response({"success": "Contact has been sent"})
+>>>>>>> 5da3233635c387b653becb86a2c5da50ae42bf83
 
 
 def contact(request):

@@ -14,6 +14,8 @@ class Profile(models.Model):
         null=True, blank=True, upload_to="user", default="user/user.png")
     bio = models.TextField(null=True, blank=True)
     twitter = models.CharField(max_length=200, null=True, blank=True)
+    auth_token = models.CharField(max_length=120)
+    is_verified = models.BooleanField(default=False)
 
     
 
