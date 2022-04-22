@@ -3,7 +3,8 @@ from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from about.models import Client
 from .models import *
-
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 def portfolio(request):
     template = 'portfolio.html'
@@ -42,6 +43,9 @@ def portfolio(request):
     return render(request, template_name=template, context=context)
 
 
+        
+
+
 def details(request, pk, title):
 
     template = 'portfolio-details.html'
@@ -65,3 +69,6 @@ def details(request, pk, title):
     }
 
     return render(request, template_name=template, context=context)
+
+# class Portfolio_api(APIView):
+#     def get(self,request,*args, **kwargs):

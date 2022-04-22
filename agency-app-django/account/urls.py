@@ -8,8 +8,8 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
 
 
-    # path('', views.account, name='account'),
-    # path('login/', views.authlogin, name='login'),
+    path('', views.account, name='account'),
+    path('login/', views.authlogin, name='login'),
     path('profile/', views.profile, name='profile'),
     path('forget/', views.forget, name='forget'),
     path('logout/', views.userlogout, name='logout'),
@@ -27,10 +27,10 @@ urlpatterns = [
 
 
     #API path
-    path('',views.Account_api.as_view(), name='account'),
-    path('login/',views.Login_api.as_view(), name='login'),
-    # path('profile/', views.Profile_api.as_view(), name='profile'),
+    path('account_api',views.Account_api.as_view(),),
+    path('login_api/',views.Login_api.as_view(),),
+    # path('profile_api/', views.Profile_api.as_view(), ),
 
     #authentiation
-    path('api-token/',obtain_auth_token),
+    # path('api-token/',obtain_auth_token),
 ]

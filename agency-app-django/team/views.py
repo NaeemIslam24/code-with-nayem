@@ -2,7 +2,11 @@ from django.shortcuts import render
 from .models import Team
 from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
+from . serializers import Team_serializer
+from rest_framework.response import Response
 
+
+from rest_framework.views import APIView
 
 def team(request):
     template = 'team.html'
@@ -23,3 +27,16 @@ def team(request):
         'teamdata': team,
     }
     return render(request, template_name=template, context=context)
+
+
+
+class Team_api(APIView):
+
+    def get(self,request,*args, **kwargs):
+
+        team = Team.objects.all()
+        team_serialized = Team_serializer(team, many=True)
+        return Response(team_serialized.data)
+
+        
+
