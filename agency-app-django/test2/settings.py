@@ -165,14 +165,13 @@ CKEDITOR_CONFIGS = {
 
 # SMTP Configuration
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = ""
-
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = "mail"
+EMAIL_HOST_PASSWORD = 'pass'
 
 #  this link is to make low secure gmail. otheroise it will make problem to reset pass
 # https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4M0JGTr-qpzn5JnINlHnw3DkJt5PHvtxeGBpEO7bCuY8eDOllo4Vqs8c-YRkiCARAvutg40dT0erdNpT5U4XzSkFV_t8Q
