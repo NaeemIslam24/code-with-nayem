@@ -7,18 +7,17 @@ from django.contrib.auth.models import User
 from .models import *
 from pricing.models import Purchasing
 from . forms import ProfileForm
-<<<<<<< HEAD
-=======
+
+
 from django.core.mail import send_mail
 from django.conf import settings
 
 
->>>>>>> 5da3233635c387b653becb86a2c5da50ae42bf83
 # for rest api
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-<<<<<<< HEAD
+
 # from . serializers import Profile_serializer
 
 class Account_api(APIView):
@@ -43,7 +42,7 @@ class Account_api(APIView):
             user.set_password(raw_password=password) # this is valid hash password
             user.save()
             return Response({"success": "An user successfully creates an account"})
-=======
+
 from . serializers import Profile_serializer
 
 # class Account_api(APIView):
@@ -68,7 +67,7 @@ from . serializers import Profile_serializer
 #             user.set_password(raw_password=password) # this is valid hash password
 #             user.save()
 #             return Response({"success": "An user successfully creates an account"})
->>>>>>> 5da3233635c387b653becb86a2c5da50ae42bf83
+
 
 
 def account(request):
@@ -268,7 +267,7 @@ def profile(request):
     top_footer2 = Top_footer2.objects.order_by()
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
-<<<<<<< HEAD
+
     profile = request.user.profile #to have corrent user "request.user"
 
     
@@ -287,8 +286,8 @@ def profile(request):
            'pro': pro,
            'purchase': purchase,
        }
-    else:
-=======
+
+
     try:
         profile = request.user.profile
 
@@ -308,9 +307,9 @@ def profile(request):
         messages.error(request, 'No profile for Superuser')
         return redirect('login')
 
->>>>>>> 5da3233635c387b653becb86a2c5da50ae42bf83
 
-       context = {
+
+    context = {
            'top_headerdata': top_header,
            'headerdata': header,
            'footer1': top_footer1,
