@@ -32,8 +32,7 @@ def team(request):
 
 class Team_api(APIView):
 
-    def get(self,request,*args, **kwargs):
-
+    def get(self,request, format=None):
         team = Team.objects.all()
         team_serialized = Team_serializer(team, many=True)
         return Response(team_serialized.data)

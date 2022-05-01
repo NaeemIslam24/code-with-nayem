@@ -5,6 +5,6 @@ urlpatterns = [
 
 
         #API path
-    path('team_api',views.Team_api.as_view(),name='team_api' ),
+    path('team-api/',views.Team_api.as_view()),
 
 ]

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+
 from .models import *
 from header.models import *
 from footer.models import *
@@ -8,23 +9,44 @@ from django.views import View
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework import generics
 
 from . serializers import Contact_serializer
 
-class Contact_api(APIView):
-    def post(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            name = request.data['name']
-            email = request.data['email']
-            subject = request.data['subject']
-            massage = request.data['massage']
-            contact = Contact()
-            contact.name = name
-            contact.email = email
-            contact.subject = subject
-            contact.message = massage
-            contact.save()
-            return Response({"success": "Contact has been sent"})
+# class Contact_api(APIView):
+#     def post(self, request, *args, **kwargs):
+#         if request.method == 'POST':
+#             name = request.data['name']
+#             email = request.data['email']
+#             subject = request.data['subject']
+#             massage = request.data['massage']
+#             contact = Contact()
+#             contact.name = name
+#             contact.email = email
+#             contact.subject = subject
+#             contact.message = massage
+#             contact.save()
+#             return Response({"success": "Contact has been sent"})
+
+
+
+# class Contact_api(APIView):
+
+#     def post(self, request, format=None):
+#         serializer = Contact_serializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+
+
+class Contact_api(generics.CreateAPIView):
+
+    queryset = Contact.objects.all()
+    serializer_class = Contact_serializer
+        
 
 # from . serializers import Contact_serializer
 
