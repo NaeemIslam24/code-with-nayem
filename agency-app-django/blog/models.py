@@ -10,24 +10,37 @@ class Category(models.Model):
         return self.name
 
 class Post(models.Model):
+      class ArticlePublishOptions(models.TextChoices):
+         PUBLISH = "pub", "Publish"
+         DRAFT = "dra", "DRAFT"
+         PRIVATE = "pri", "Private"
+
       catagory = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
-      headline = models.CharField(max_length=240)
+      headline = models.CharField(max_length=240,help_text="Headline of the article",)
       sub_headline = models.CharField(max_length=250 , blank=True, null=True)
       thumbnail = models.ImageField(blank=True,null=True,upload_to='images/')
       body = RichTextField()
       author = models.ForeignKey(User, blank=True,on_delete= models.CASCADE, related_name='blog_post')
       slug = models.SlugField(blank=True,null=True)
-      active = models.BooleanField(default=True)
+      publish_status = models.CharField(
+        max_length=3,
+        choices=ArticlePublishOptions.choices,
+        default=ArticlePublishOptions.DRAFT,)
       published = models.DateTimeField(default=timezone.now)
       created = models.DateTimeField(auto_now_add=True)
 
       def get_absolute_url(self):
           return reverse("blog:post_detail", args=[self.id,self.slug])
+
+      def get_image_url(self):
+         if not self.thumbnail:
+            return None
+         return self.thumbnail.url
       
 
       class Meta:
             ordering = ('-published',)
-
+      
 
       def __str__(self):
             return self.headline

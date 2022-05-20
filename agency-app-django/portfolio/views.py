@@ -3,6 +3,8 @@ from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from about.models import Client
 from .models import *
+from rest_framework import generics
+from.serializers import Portfolio_serializer
 
 
 def portfolio(request):
@@ -41,6 +43,14 @@ def portfolio(request):
     }
     return render(request, template_name=template, context=context)
 
+class Portfolio_class(generics.ListAPIView):
+    queryset = Portfolio.objects.all()
+    serializer_class = Portfolio_serializer
+    
+
+
+        
+
 
 def details(request, pk, title):
 
@@ -65,3 +75,6 @@ def details(request, pk, title):
     }
 
     return render(request, template_name=template, context=context)
+
+# class Portfolio_api(APIView):
+#     def get(self,request,*args, **kwargs):

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'header',
     'footer',
     'account.apps.AccountConfig',
-    'blog_api',
     # external apps
     'ckeditor',
     'crispy_forms',
@@ -50,6 +49,8 @@ INSTALLED_APPS = [
 
 
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django_currentuser.middleware.ThreadLocalUserMiddleware',
 ]
 
 ROOT_URLCONF = 'test2.urls'
@@ -155,37 +157,47 @@ MESSAGE_TAGS = {
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
-        'height': 300,
+        'height': 500,
         'width': '100%',
     },
 }
 
 # SMTP Configuration
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "nayemnehal.cu@gmail.com"
-EMAIL_HOST_PASSWORD = 'nnnnssss$$$$'
+EMAIL_HOST_USER = "mail"
+EMAIL_HOST_PASSWORD = 'pass'
 
 #  this link is to make low secure gmail. otheroise it will make problem to reset pass
 # https://myaccount.google.com/lesssecureapps?pli=1&rapt=AEjHL4M0JGTr-qpzn5JnINlHnw3DkJt5PHvtxeGBpEO7bCuY8eDOllo4Vqs8c-YRkiCARAvutg40dT0erdNpT5U4XzSkFV_t8Q
 
 
 REST_FRAMEWORK = {
+# default authentication
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
+   
         'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',# create token part 3
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt toekn
     ],
 
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-    # 'rest_framework.authentication.BasicAuthentication',
-    # 'rest_framework.authentication.SessionAuthentication',
-    'rest_framework.authentication.TokenAuthentication', 
-    # 'rest_framework_simplejwt.authentication.JWTAuthentication',  # simple jwt toekn
-]
+    # default permission
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
+        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
+    ],
+
+
+'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' #to have schema like http://localhost:8000/docs/
+
+
 }
 
 
-REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }
+
+
+

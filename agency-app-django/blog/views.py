@@ -75,10 +75,10 @@ def blog(request):
 
     if category_pick == None:
 
-        posts = Post.objects.filter(active=True)
+        posts = Post.objects.filter(publish_status=Post.ArticlePublishOptions.PUBLISH)
 
     else:
-        posts = Post.objects.filter(catagory__name=category_pick, active=True)
+        posts = Post.objects.filter(catagory__name=category_pick, publish_status=Post.ArticlePublishOptions.PUBLISH)
 
     paginator = Paginator(posts, 5)
 
@@ -114,7 +114,7 @@ def post_detail(request, number, slug):
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
     cate = Category.objects.all()
-    posts = Post.objects.filter(active=True)[0:3]
+    posts = Post.objects.filter(publish_status=Post.ArticlePublishOptions.PUBLISH)[0:3]
     post = get_object_or_404(Post, slug=slug, id=number)
     comments = post.comment_here.filter(approved=True)
     new_comment = None

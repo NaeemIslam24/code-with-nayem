@@ -16,7 +16,6 @@ urlpatterns = [
     path('team/', include('team.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('account/', include('account.urls')),
-    path('blog-api/', include('blog_api.urls')),
     path('docs/', include_docs_urls(title='AgencyAPI')),
 
     # default schema for the API
@@ -27,4 +26,7 @@ urlpatterns = [
     ), name = 'openapi-schema'),
 
 
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+

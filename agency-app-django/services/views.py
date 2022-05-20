@@ -2,7 +2,9 @@ from django.shortcuts import render
 from . models import Service, Skill
 from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
-
+from . serializers import Service_serializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 def services(request):
     service = Service.objects.order_by()
@@ -25,3 +27,11 @@ def services(request):
     }
     template = 'services.html'
     return render(request, template_name=template, context=context)
+
+class Service_api(APIView):
+    def get(self,request,*args, **kwargs):
+        service = Service.objects.all()
+
+        service_serializer = Service_serializer(service, many=True)
+
+        return Response(service_serializer.data)
