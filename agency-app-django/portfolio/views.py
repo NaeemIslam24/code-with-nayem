@@ -3,9 +3,13 @@ from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from about.models import Client
 from .models import *
+
 from rest_framework import generics
 from.serializers import Portfolio_serializer
 
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 def portfolio(request):
     template = 'portfolio.html'
@@ -47,6 +51,9 @@ class Portfolio_class(generics.ListAPIView):
     queryset = Portfolio.objects.all()
     serializer_class = Portfolio_serializer
     
+
+
+        
 
 
         
