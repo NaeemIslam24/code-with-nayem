@@ -11,5 +11,5 @@ urlpatterns = [
     path('<int:pk>/<slug:sl>/edit/', views.edit_post, name='edit'),
 
     path('search', views.search, name='search'),
-    path('blog-api/', include('blog_api.urls')),
+    path('api/', include('blog_api.urls')),
 ]

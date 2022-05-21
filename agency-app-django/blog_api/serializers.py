@@ -13,7 +13,7 @@ class Post_serializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
 
-        return f"http://localhost:8000/blog/blog-api/retrive-update/{obj.pk}/"
+        return f"http://localhost:8000/blog/api/retrive-update/{obj.pk}/"
 
 
 

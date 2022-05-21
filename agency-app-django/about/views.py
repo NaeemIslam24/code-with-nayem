@@ -7,6 +7,8 @@ from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 def about_page(request):
     template = 'about.html'
 
+
+
     count = Count.objects.order_by()
     testi2 = Testimonial2.objects.order_by()
     testi1 = Testimonial1.objects.order_by()
