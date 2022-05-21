@@ -4,9 +4,6 @@ from rest_framework.reverse import reverse
 from portfolio.models import Portfolio, Category
 
 
-
-
-
 class Catagory_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Category
