@@ -82,20 +82,29 @@
         <div class="section-title">
           <h2>{{clientdata.0.title}}</h2>
           <p>{{clientdata.0.text}}</p>
+          
+
+
+    
         </div>
 
         <div class="clients-slider swiper-container">
           <div class="swiper-wrapper align-items-center">
 
-            <div class="swiper-slide"><img src="{{clientdata.0.img1.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img2.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img3.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img4.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img5.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img6.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img7.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img8.url}}" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{clientdata.0.img9.url}}" class="img-fluid" alt=""></div>
+
+          <!-- Here we used data from many to many relation django -->
+          {% for data in clientdata %}
+
+            {% for da in data.client_image.all %}
+
+              <div class="swiper-slide"><img src="{{da.image.url}}" class="img-fluid" alt=""></div>
+           
+              {% endfor %}
+
+          {% endfor %}
+            
+
+
           </div>
           <div class="swiper-pagination"></div>
         </div>

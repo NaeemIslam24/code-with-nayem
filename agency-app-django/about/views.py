@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from . models import Count, Testimonial2, Testimonial1, Client, About
+from . models import Count, Testimonial2, Testimonial1, Client, About, Client_image
 from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 
@@ -32,6 +32,7 @@ def about_page(request):
         'footer2': top_footer2,
         'footer3': top_footer3,
         'footer4': top_footer4,
+        
 
     }
 

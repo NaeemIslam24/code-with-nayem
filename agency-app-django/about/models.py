@@ -28,23 +28,24 @@ class Testimonial2(models.Model):
     def __str__(self):
         return self.name
 
-class Client(models.Model):
 
+
+class Client_image(models.Model):
+    name = models.CharField(max_length=264, null=True, blank=True)
+    image = models.ImageField(upload_to='clients', null=True, blank=True)
+
+    def __str__(self):
+        return str(self.name)
+
+class Client(models.Model):
 
     title = models.CharField(max_length=264)
     text = models.TextField(max_length=500)
-    img1 = models.ImageField(upload_to='clients/')
-    img2 = models.ImageField(upload_to='clients/')
-    img3 = models.ImageField(upload_to='clients/')
-    img4 = models.ImageField(upload_to='clients/')
-    img5 = models.ImageField(upload_to='clients/')
-    img6 = models.ImageField(upload_to='clients/')
-    img7 = models.ImageField(upload_to='clients/')
-    img8 = models.ImageField(upload_to='clients/')
-    img9 = models.ImageField(upload_to='clients/')
-    img10 = models.ImageField(upload_to='clients/')
+    client_image = models.ManyToManyField(Client_image, blank=True,)
     def __str__(self):
         return self.title
+
+
 
 class About(models.Model):
 
