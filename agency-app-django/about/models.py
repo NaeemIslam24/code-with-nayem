@@ -2,7 +2,6 @@ from django.db import models
 
 class Count(models.Model):
 
-
     number = models.CharField(max_length=10)
     subtitle = models.CharField(max_length=100)
     shorttext = models.CharField(max_length=100)
@@ -10,15 +9,17 @@ class Count(models.Model):
     def __str__(self):
         return self.number
 
+        
 class Testimonial1(models.Model):
 
-    
     title = models.CharField(max_length=100)
     subtitle = models.CharField(max_length=264)
     def __str__(self):
         return self.title
 
+
 class Testimonial2(models.Model):
+
 
     name = models.CharField(max_length=50)
     img = models.ImageField(upload_to='testimonials')
