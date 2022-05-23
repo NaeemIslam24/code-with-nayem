@@ -2,11 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from .models import *
-
 from rest_framework import generics
 from.serializers import Portfolio_serializer
-# nnnnssss$$$$1111
-
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -76,5 +73,4 @@ def details(request, pk, title):
 
     return render(request, template_name=template, context=context)
 
-# class Portfolio_api(APIView):
-#     def get(self,request,*args, **kwargs):
+
