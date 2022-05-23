@@ -31,10 +31,7 @@ class Retrive_update(RetrieveUpdateDestroyAPIView,PostUserWritePermission):
     permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = Post_serializer
-    authentication_classes = [  # default TokenAuthentication in settings.py
-        authentication.SessionAuthentication,
-        authentication.TokenAuthentication
-        ]
+ 
   
 
 

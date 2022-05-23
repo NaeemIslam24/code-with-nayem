@@ -167,7 +167,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "nayemnehal.cu@gmail.com"
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'nnnnssss$$$$'
 
 
 #  this link is to make low secure gmail. otheroise it will make problem to reset pass
