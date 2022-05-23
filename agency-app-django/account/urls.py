@@ -40,5 +40,5 @@ urlpatterns = [
     #
     # #authentiation
 
-    # path('api-token/',obtain_auth_token),
+    path('token/',obtain_auth_token),
 ]

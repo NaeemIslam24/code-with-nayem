@@ -15,7 +15,7 @@ SECRET_KEY = 'qo9_7qg01g3slqi)y%j_b18p8wuu6#3k-=tp6=19hn%@6zz3i4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['localhost','stackpro.pythonanywhere.com']
 
 
@@ -166,8 +166,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "mail"
-EMAIL_HOST_PASSWORD = 'pass'
+EMAIL_HOST_USER = "nayemnehal.cu@gmail.com"
+EMAIL_HOST_PASSWORD = ''
 
 
 #  this link is to make low secure gmail. otheroise it will make problem to reset pass
@@ -177,17 +177,17 @@ EMAIL_HOST_PASSWORD = 'pass'
 REST_FRAMEWORK = {
 # default authentication
     'DEFAULT_AUTHENTICATION_CLASSES': [
-   
+
         'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.TokenAuthentication',# create token part 3
+        'rest_framework.authentication.TokenAuthentication',# create token part 3
         # 'rest_framework_simplejwt.authentication.JWTAuthentication', # simple jwt toekn
     ],
 
-    # default permission
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
-        # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
-    ],
+    # # default permission
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     # 'rest_framework.permissions.IsAuthenticated', # will work if authenticated
+    #     # 'rest_framework.permissions.IsAuthenticatedOrReadOnly', # will work if even not authenticated
+    # ],
 
 
 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema', #to have schema like http://localhost:8000/docs/

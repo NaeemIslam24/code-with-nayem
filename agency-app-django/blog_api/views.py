@@ -1,8 +1,9 @@
 
 from rest_framework.decorators import permission_classes
 from blog.models import Post
-
-from rest_framework.permissions import  AllowAny, BasePermission, SAFE_METHODS, DjangoModelPermissions
+from rest_framework import permissions
+from rest_framework import authentication
+from rest_framework.permissions import IsAdminUser,IsAuthenticated, AllowAny, BasePermission, SAFE_METHODS, DjangoModelPermissions, IsAuthenticatedOrReadOnly
 from rest_framework.generics import ListAPIView,ListCreateAPIView,RetrieveAPIView,RetrieveDestroyAPIView,RetrieveUpdateAPIView,RetrieveUpdateDestroyAPIView, get_object_or_404
 # Create your views here.
 from .serializers import Post_serializer
@@ -21,14 +22,19 @@ class PostUserWritePermission(BasePermission):
 
 class Post_api(ListCreateAPIView):
     permission_classes = [AllowAny]
+    
     queryset = Post.objects.all()
     serializer_class = Post_serializer
 
 
 class Retrive_update(RetrieveUpdateDestroyAPIView,PostUserWritePermission):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = Post_serializer
+    authentication_classes = [  # default TokenAuthentication in settings.py
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication
+        ]
   
 
 
