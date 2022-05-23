@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
-from about.models import Client
 from .models import *
 
 from rest_framework import generics
@@ -19,7 +18,6 @@ def portfolio(request):
     top_footer2 = Top_footer2.objects.order_by()
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
-    client = Client.objects.order_by()
     all_cat = Category.objects.all()
 
     cat = request.GET.get('categ')
@@ -40,7 +38,6 @@ def portfolio(request):
         'footer2': top_footer2,
         'footer3': top_footer3,
         'footer4': top_footer4,
-        'clientdata': client,
         'portfolio': portfolio,
         'category': all_cat,
 
@@ -51,10 +48,6 @@ class Portfolio_class(generics.ListAPIView):
     queryset = Portfolio.objects.all()
     serializer_class = Portfolio_serializer
     
-
-
-        
-
 
         
 
