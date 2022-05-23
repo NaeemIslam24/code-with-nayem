@@ -1,13 +1,15 @@
 from django.db import models
 
+
+
 class Service(models.Model):
 
- 
     title = models.CharField(max_length=264)
     url = models.URLField(max_length=264)
     text = models.TextField(max_length=500)
     def __str__(self):
         return self.title
+
 
 class Skill(models.Model):
   

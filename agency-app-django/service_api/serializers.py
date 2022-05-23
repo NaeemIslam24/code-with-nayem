@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from . models import Service, Skill
+from services.models import Service, Skill
 
 
 class Service_serializer(serializers.ModelSerializer):
@@ -9,7 +9,7 @@ class Service_serializer(serializers.ModelSerializer):
 
 
 
-# class Skill_serializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Skill
-#         fields = '__all__'
+class Skill_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = '__all__'
