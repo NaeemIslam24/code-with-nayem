@@ -191,12 +191,10 @@ REST_FRAMEWORK = {
     ],
 
 
-'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' #to have schema like http://localhost:8000/docs/
-
+'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema', #to have schema like http://localhost:8000/docs/
+# 'DEFAULT_RENDERER_CLASSES':('rest_framework.renderers.JSONRenderer',)
 
 }
-
-
 
 
 # REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }

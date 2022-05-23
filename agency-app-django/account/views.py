@@ -199,7 +199,9 @@ def authlogin(request):
         try:
             if not profile.is_verified:
                 messages.error(request, 'Your account not verified check your mail')
-                return redirect('login')
+                # return redirect('login')
+                login(request, user)
+                return redirect('profile')
             if profile is not None:
                 login(request, user)
                 return redirect('profile')
