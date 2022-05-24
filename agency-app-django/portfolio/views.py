@@ -16,10 +16,7 @@ def portfolio(request):
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
     all_cat = Category.objects.all()
-
     cat = request.GET.get('categ')
-
-    print(cat)
 
     if cat == None:
 

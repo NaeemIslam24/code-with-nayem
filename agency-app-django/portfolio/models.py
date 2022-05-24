@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from django.utils import timezone
 
@@ -12,6 +13,9 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
       self.name = self.name.lower()
       return super(Category, self).save(*args, **kwargs)
+
+
+
 
 
 class Portfolio(models.Model):

@@ -28,9 +28,15 @@ class Post_api(ListCreateAPIView):
 
 
 class Retrive_update(RetrieveUpdateDestroyAPIView,PostUserWritePermission):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Post.objects.all()
     serializer_class = Post_serializer
+    authentication_classes = [  
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication
+        ]
+
+
  
   
 
