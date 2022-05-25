@@ -7,14 +7,24 @@ from rest_framework.reverse import reverse
 class Post_serializer(serializers.ModelSerializer):
 
     url = serializers.SerializerMethodField(read_only = True)
+    author = serializers.SerializerMethodField(read_only = True)
+    category = serializers.SerializerMethodField(read_only = True)
+
 
     class Meta:
         model = Post
-        fields = ['url','id','headline','sub_headline','get_image_url','body','slug','publish_status','published','created','catagory','author']
+        fields = ['url','id','headline','sub_headline','get_image_url','body','slug','publish_status','published','created','category','author']
 
-    # def get_url(self, obj):
-
-    #     return f"http://localhost:8000/blog/api/retrive-update/{obj.pk}/"
+    def get_author(self,obj):
+        return {
+            'username': obj.author.username,
+            'id':obj.author.id,
+        }
+    def get_category(self,obj):
+        return {
+            "category": obj.catagory.name,
+            "id": obj.catagory.id,
+        }
 
 
     def get_url(self, obj): 
