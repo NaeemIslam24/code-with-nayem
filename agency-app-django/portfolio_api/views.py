@@ -19,8 +19,7 @@ class Category(APIView):
     def get(self, request, formant=None):
 
         '''
-        request.query_params.get('category') and request.GET['category'] both do same work
-
+        site url/portfolio/api/category/?category=app     (at last app means the category name)
         '''
         # category = request.GET['category']
         category = request.query_params.get('category')
