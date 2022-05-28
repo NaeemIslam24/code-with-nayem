@@ -3,11 +3,31 @@ from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from django.db.models import Q
 
 class Category(models.Model):
     name = models.CharField(max_length=25)
     def __str__(self):
         return self.name
+
+
+
+class AgentQuerySet(models.QuerySet):
+    def is_publuish(self):
+        return self.filter(publish_status=Post.ArticlePublishOptions.PUBLISH)
+
+    # we find the finding method's arguments from views.py
+    def finding(self, query):
+        lookup = Q(headline__icontains=query) | Q(body__icontains=query)
+        qs = self.is_publuish().filter(lookup)
+        return qs
+
+class AgentManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        # to know detail https://docs.djangoproject.com/en/4.0/topics/db/managers/
+        return AgentQuerySet(self.model, using=self._db)
+
+
 
 class Post(models.Model):
       class ArticlePublishOptions(models.TextChoices):
@@ -28,6 +48,8 @@ class Post(models.Model):
         default=ArticlePublishOptions.DRAFT,)
       published = models.DateTimeField(default=timezone.now)
       created = models.DateTimeField(auto_now_add=True)
+      objects = AgentManager()
+
 
       def get_absolute_url(self):
           return reverse("blog:post_detail", args=[self.id,self.slug])

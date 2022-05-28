@@ -37,7 +37,41 @@ class Retrive_update(RetrieveUpdateDestroyAPIView,PostUserWritePermission):
         ]
 
 
- 
+class Search_api(ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = Post_serializer
+
+    def get_queryset(self, *args, **kwargs):
+
+        #here get_queryset is inheritate from another class by super()
+        qs = super().get_queryset(*args,**kwargs)
+
+        # here took the params from url
+        q = self.request.GET.get('q')
+        result = Post.objects.none()
+        if q is not None:
+
+            #here we sent the params to the finding method in medels
+            result = qs.finding(q)
+        return result
+
+
+# class Search_api(ListAPIView):
+#     queryset = Post.objects.all()
+#     serializer_class = Post_serializer
+#
+#     def get_queryset(self, *args, **kwargs):
+#         qs = super().get_queryset(*args, **kwargs)
+#         q = self.request.GET.get('q')
+#         result = Post.objects.none()
+#         if q is not None:
+#             user = None
+#             if self.request.user.is_authenticated:
+#                 user = self.request.user
+#             result = qs.search(q, user=user)
+#         return result
+#
+
   
 
 
