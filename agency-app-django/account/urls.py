@@ -5,6 +5,12 @@ from django.contrib.auth import views as auth_view
 from rest_framework.authtoken.views import obtain_auth_token 
 
 
+## JWTAuthentication
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 urlpatterns = [
 
 
@@ -37,8 +43,10 @@ urlpatterns = [
     # path('',views.Account_api.as_view(), name='account'),
     # path('login/',views.Login_api.as_view(), name='login'),
     # # path('profile/', views.Profile_api.as_view(), name='profile'),
-    #
-    # #authentiation
+
+    path('jwt/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('jwt/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 
     path('token/',obtain_auth_token),
 ]

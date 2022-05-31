@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
 from django.db.models import Q
-
+from . import utils
 class Category(models.Model):
     name = models.CharField(max_length=25)
     def __str__(self):
@@ -50,7 +50,6 @@ class Post(models.Model):
       created = models.DateTimeField(auto_now_add=True)
       objects = AgentManager()
 
-
       def get_absolute_url(self):
           return reverse("blog:post_detail", args=[self.id,self.slug])
 
@@ -66,6 +65,13 @@ class Post(models.Model):
 
       def __str__(self):
             return self.headline
+      
+
+      def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = utils.unique_slug_generator(self)
+            
+        super().save(*args, **kwargs)
 
 
 class Comments(models.Model):

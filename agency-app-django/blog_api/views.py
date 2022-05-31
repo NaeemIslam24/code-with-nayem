@@ -7,7 +7,8 @@ from rest_framework.permissions import IsAdminUser,IsAuthenticated, AllowAny, Ba
 from rest_framework.generics import ListAPIView,ListCreateAPIView,RetrieveAPIView,RetrieveDestroyAPIView,RetrieveUpdateAPIView,RetrieveUpdateDestroyAPIView, get_object_or_404
 # Create your views here.
 from .serializers import Post_serializer
-
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 
 
@@ -21,14 +22,16 @@ class PostUserWritePermission(BasePermission):
 
 
 class Post_api(ListCreateAPIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     
     queryset = Post.objects.all()
     serializer_class = Post_serializer
+    filterset_fields = ['headline']
+ 
 
 
 class Retrive_update(RetrieveUpdateDestroyAPIView,PostUserWritePermission):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = Post_serializer
     authentication_classes = [  
@@ -41,6 +44,7 @@ class Search_api(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = Post_serializer
 
+    
     def get_queryset(self, *args, **kwargs):
 
         #here get_queryset is inheritate from another class by super()
@@ -56,21 +60,6 @@ class Search_api(ListAPIView):
         return result
 
 
-# class Search_api(ListAPIView):
-#     queryset = Post.objects.all()
-#     serializer_class = Post_serializer
-#
-#     def get_queryset(self, *args, **kwargs):
-#         qs = super().get_queryset(*args, **kwargs)
-#         q = self.request.GET.get('q')
-#         result = Post.objects.none()
-#         if q is not None:
-#             user = None
-#             if self.request.user.is_authenticated:
-#                 user = self.request.user
-#             result = qs.search(q, user=user)
-#         return result
-#
 
   
 

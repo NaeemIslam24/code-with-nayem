@@ -8,8 +8,7 @@ class Post_serializer(serializers.ModelSerializer):
 
     url = serializers.SerializerMethodField(read_only = True)
     author = serializers.SerializerMethodField(read_only = True)
-    category = serializers.SerializerMethodField(read_only = True)
-
+    category = serializers.SerializerMethodField(read_only = True)  
 
     class Meta:
         model = Post
