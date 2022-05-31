@@ -201,7 +201,8 @@ def create_post(request):
         post_form = ModelPost(request.POST, request.FILES)
         if post_form.is_valid():
             post_form.save()
-        return redirect('http://localhost:8000/')
+        return redirect('blog:blog')
+
     context = {
         'post_form': post_form
     }
