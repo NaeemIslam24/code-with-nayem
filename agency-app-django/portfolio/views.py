@@ -46,7 +46,7 @@ class Portfolio_class(generics.ListAPIView):
         
 
 
-def details(request, pk, title):
+def details(request, slug):
 
     template = 'portfolio-details.html'
     top_header = Top_header.objects.order_by()
@@ -56,7 +56,7 @@ def details(request, pk, title):
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
     portfolio = Portfolio.objects.all()
-    post = get_object_or_404(portfolio, id=pk, title=title)
+    post = get_object_or_404(portfolio, slug=slug)
 
     context = {
         'top_headerdata': top_header,

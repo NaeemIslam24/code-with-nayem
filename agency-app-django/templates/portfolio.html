@@ -57,7 +57,7 @@
                 <h4>{{port.title}}</h4>
                 <div class="portfolio-links">
                   <a href="{{port.image1.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="{% url 'details' port.id port.title %}" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="{% url 'details' port.slug %}" title="More Details"><i class="bx bx-link"></i></a>
                 </div>
               </div>
             </div>

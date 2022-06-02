@@ -51,7 +51,7 @@ class Post(models.Model):
       objects = AgentManager()
 
       def get_absolute_url(self):
-          return reverse("blog:post_detail", args=[self.id,self.slug])
+          return reverse("blog:post_detail", args=[self.slug])
 
       def get_image_url(self):
          if not self.thumbnail:

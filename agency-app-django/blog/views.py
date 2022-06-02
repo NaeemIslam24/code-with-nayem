@@ -104,7 +104,7 @@ def blog(request):
     return render(request, template_name=template, context=context)
 
 
-def post_detail(request, number, slug):
+def post_detail(request, slug):
 
     template = 'blog-single.html'
     top_header = Top_header.objects.order_by()
@@ -115,7 +115,7 @@ def post_detail(request, number, slug):
     top_footer4 = Top_footer4.objects.order_by()
     cate = Category.objects.all()
     posts = Post.objects.filter(publish_status=Post.ArticlePublishOptions.PUBLISH)[0:3]
-    post = get_object_or_404(Post, slug=slug, id=number)
+    post = get_object_or_404(Post, slug=slug)
     comments = post.comment_here.filter(approved=True)
     new_comment = None
     if request.method == 'POST':
