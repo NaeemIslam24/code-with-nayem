@@ -57,7 +57,7 @@ class Post(models.Model):
          if not self.thumbnail:
             return None
          return self.thumbnail.url
-      
+
 
       class Meta:
             ordering = ('-published',)
@@ -68,9 +68,14 @@ class Post(models.Model):
       
 
       def save(self, *args, **kwargs):
+        
+        # we find whole model by self 
+        print('self..........', self)
+          
         if not self.slug:
+
             self.slug = utils.unique_slug_generator(self)
-            
+    
         super().save(*args, **kwargs)
 
 

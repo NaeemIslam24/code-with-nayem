@@ -98,8 +98,8 @@ def blog(request):
         'footer4': top_footer4,
         'posts': post,
         'page_ob': page,
-        'category': cate
-
+        'category': cate,
+        
     }
     return render(request, template_name=template, context=context)
 
