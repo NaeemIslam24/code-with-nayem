@@ -3,70 +3,10 @@ from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.models import User
 from .models import *
-from pricing.models import Purchasing
 from . forms import ProfileForm
-
-
 from django.core.mail import send_mail
 from django.conf import settings
-
-
-# for rest api
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-# from . serializers import Profile_serializer
-
-class Account_api(APIView):
-    def post(self, request, *args,**kwargs):
-        if request.method == 'POST':
-            username=request.data['user_name']
-            email=request.data['email']
-            password=request.data['password']
-            confirm_password=request.data['confirm_password']
-
-            if User.objects.filter(username=username).exists():
-                return Response({"error": "An user already exists with this username!"})
-
-            if password != confirm_password:
-                return Response({"error": " Password and Confirm Password not matched!"})
-
-            user = User()
-            user.username = username
-            user.email = email
-            user.password = password
-            user.is_active = True
-            user.set_password(raw_password=password) # this is valid hash password
-            user.save()
-            return Response({"success": "An user successfully creates an account"})
-
-from . serializers import Profile_serializer
-
-# class Account_api(APIView):
-#     def post(self, request, *args,**kwargs):
-#         if request.method == 'POST':
-#             username=request.data['user_name']
-#             email=request.data['email']
-#             password=request.data['password']
-#             confirm_password=request.data['confirm_password']
-#
-#             if User.objects.filter(username=username).exists():
-#                 return Response({"error": "An user already exists with this username!"})
-#
-#             if password != confirm_password:
-#                 return Response({"error": " Password and Confirm Password not matched!"})
-#
-#             user = User()
-#             user.username = username
-#             user.email = email
-#             user.password = password
-#             user.is_active = True
-#             user.set_password(raw_password=password) # this is valid hash password
-#             user.save()
-#             return Response({"success": "An user successfully creates an account"})
 
 
 
@@ -122,17 +62,7 @@ def account(request):
 
     return render(request, template_name=template, context=context)
 
-class Login_api(APIView):
-    def post(self,request):
-        username = request.data['username']
-        password = request.data['password']
-        user = authenticate(request, username=username, password=password)
-      
-        if user is not None:
-            login(request, user)
-            return Response({"success":"Login successful"})
-        else:
-            return Response({"error":"username or password invalid"})
+
 
 
 def verify(request):
@@ -159,17 +89,6 @@ def verify(request):
 
     return render(request, template_name=template)
 
-# class Login_api(APIView):
-#     def post(self,request):
-#         username = request.data['username']
-#         password = request.data['password']
-#         user = authenticate(request, username=username, password=password)
-#
-#         if user is not None:
-#             login(request, user)
-#             return Response({"success":"Login successful"})
-#         else:
-#             return Response({"error":"username or password invalid"})
 
 
 def authlogin(request):

@@ -1,18 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 # pass reset
 from django.contrib.auth import views as auth_view
-from rest_framework.authtoken.views import obtain_auth_token 
 
-
-## JWTAuthentication
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
 
 urlpatterns = [
-
 
     path('', views.account, name='account'),
     path('login/', views.authlogin, name='login'),
@@ -30,23 +22,12 @@ urlpatterns = [
          name="password_reset_confirm"),
     path('reset_pass_complete/', auth_view.PasswordResetCompleteView.as_view(template_name='account/reset_complete.html'),
          name="password_reset_complete"),
+
     # password reset send
 
-
-    #API path
-    path('account_api',views.Account_api.as_view(),),
-    path('login_api/',views.Login_api.as_view(),),
-    # path('profile_api/', views.Profile_api.as_view(), ),
-
-    #authentiation
-    # #API path
-    # path('',views.Account_api.as_view(), name='account'),
-    # path('login/',views.Login_api.as_view(), name='login'),
-    # # path('profile/', views.Profile_api.as_view(), name='profile'),
-
-    path('jwt/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('jwt/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/', include('account_api.urls'),)
 
 
-    path('token/',obtain_auth_token),
+
+
 ]

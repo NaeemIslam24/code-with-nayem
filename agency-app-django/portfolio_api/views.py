@@ -3,10 +3,19 @@ from portfolio.models import Portfolio, Category
 from .serializers import  Portfolio_serializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import permissions
+from rest_framework import authentication
+from rest_framework.permissions import IsAdminUser,IsAuthenticated, AllowAny, BasePermission, SAFE_METHODS, DjangoModelPermissions, IsAuthenticatedOrReadOnly
+
 
 class List(generics.ListAPIView):
     queryset = Portfolio.objects.all()
     serializer_class = Portfolio_serializer
+    permission_classes = [IsAdminUser]
+    authentication_classes = [  
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication
+        ]
 
 
 class Retrive(generics.RetrieveUpdateDestroyAPIView):
