@@ -4,9 +4,15 @@ from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
 from . serializers import Team_serializer
 from rest_framework.response import Response
-
-
+from xhtml2pdf import pisa
+from django.http import HttpResponse
 from rest_framework.views import APIView
+
+from django.views.generic import View
+from .pdf import html_to_pdf 
+
+
+
 
 def team(request):
     template = 'team.html'
@@ -27,6 +33,28 @@ def team(request):
         'teamdata': team,
     }
     return render(request, template_name=template, context=context)
+
+
+
+
+#Creating a class based view
+class GeneratePdf(View):
+     def get(self, request, *args, **kwargs):
+         
+        # getting the template
+        team = Team.objects.order_by()
+     
+        context = {
+            'teamdata': team,
+        }
+        pdf = html_to_pdf('pdf.html', context)
+
+         
+         # rendering the template
+        return HttpResponse(pdf, content_type='application/pdf')
+
+
+
 
 
 

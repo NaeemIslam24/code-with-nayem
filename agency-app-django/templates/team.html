@@ -26,7 +26,7 @@
       <div class="container">
 
         <div class="row">
-
+    
           {% for team in teamdata %}
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="member">
@@ -45,6 +45,8 @@
             </div>
           </div>
           {% endfor %}
+          <a href="{% url 'pdf' %}">PDF</a>
+       
 
         </div>
 

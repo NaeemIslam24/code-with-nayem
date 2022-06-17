@@ -6,5 +6,7 @@ urlpatterns = [
 
         #API path
     path('api/',views.Team_api.as_view()),
+    path('pdf/',views.GeneratePdf.as_view(), name="pdf"),
+    
 
 ]

@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 import random
 
+
+
+
+
+
+
 class Profile(models.Model):
     user = models.OneToOneField(
         User, null=True, blank=True, on_delete=models.CASCADE)
@@ -32,9 +38,12 @@ class Profile(models.Model):
     
 
     def __str__(self):
-        name = str(self.first_name)
-        if self.last_name:
-            name += ' ' + str(self.last_name)
+       
+        if self.first_name and self.last_name:
+            name=  str(f"{self.first_name} {self.last_name}")
+        else:
+            name = str(self.user.username)
+
         return name
 
 

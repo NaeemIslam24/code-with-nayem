@@ -1,3 +1,4 @@
+from multiprocessing.spawn import import_main_path
 from django.shortcuts import render, redirect
 from header.models import Top_header, Header
 from footer.models import Top_footer1, Top_footer2, Top_footer4, Top_footer3
@@ -7,8 +8,10 @@ from .models import *
 from . forms import ProfileForm
 from django.core.mail import send_mail
 from django.conf import settings
-
-
+from team.pdf import html_to_pdf
+from xhtml2pdf import pisa
+from django.http import HttpResponse
+from django.views.generic import View
 
 def account(request):
 
@@ -152,31 +155,6 @@ def forget(request):
 from django.forms.models import model_to_dict
 import json
 
-# class Profile_api(APIView):
-#     def get(self,request,*args, **kwargs):
-#
-#         data = request.user.profile
-#
-#
-#         return Response(data.data)
-
-# class Profile_api(APIView):
-#     def get(self,request,*args, **kwargs):
-#
-#         data = request.user.profile
-#
-#         serialized = Profile_serializer(data, many=True)
-#         return Response(serialized.data)
-
-# class Service_api(APIView):
-#     def get(self,request,*args, **kwargs):
-#         service = Service.objects.all()
-
-#         service_serializer = Service_serializer(service, many=True)
-
- 
-
-#         return Response(service_serializer.data)
 
 def profile(request):
     template = 'account/profile.html'
@@ -186,8 +164,7 @@ def profile(request):
     top_footer2 = Top_footer2.objects.order_by()
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
-
-    profile = request.user.profile #to have corrent user "request.user"
+    profile = request.user.profile 
 
     
     pro = False
@@ -209,9 +186,6 @@ def profile(request):
 
     try:
         profile = request.user.profile
-
-
-
 
         context = {
             'top_headerdata': top_header,
@@ -239,6 +213,43 @@ def profile(request):
            'pro': pro,
        }
     return render(request, template_name=template, context=context)
+
+
+
+class GeneratePdf(View):
+     def get(self, request, *args, **kwargs):
+         
+        profile = request.user.profile #to have corrent user "request.user"
+        pro = False
+        if profile.active_pro:
+            purchase = request.user.profile.purchasing 
+            pro = True
+            context = {
+     
+               'profile': profile,
+               'pro': pro,
+               'purchase': purchase,
+           }
+        try:
+            profile = request.user.profile
+            context = {
+              
+                'profile': profile,
+            }
+        except Exception:
+            return HttpResponse('We had some errors')
+           
+        context = {
+               'profile': profile,
+               'pro': pro,
+           }
+        pdf = html_to_pdf('pdf.html', context)
+             # rendering the template
+        return HttpResponse(pdf, content_type='application/pdf')
+
+
+
+
 
 
 def update_profile(request):

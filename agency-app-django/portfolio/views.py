@@ -21,6 +21,8 @@ def portfolio(request):
     if cat == None:
 
         portfolio = Portfolio.objects.all()
+        
+       
 
     else:
         portfolio = Portfolio.objects.filter(catagory__name=cat)

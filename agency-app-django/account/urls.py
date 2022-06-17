@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_view
 urlpatterns = [
 
     path('', views.account, name='account'),
+    path('pdf/',views.GeneratePdf.as_view(), name="account_pdf"),
     path('login/', views.authlogin, name='login'),
     path('verify/', views.verify, name='verify'),
     path('profile/', views.profile, name='profile'),

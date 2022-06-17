@@ -25,3 +25,20 @@ requests==2.26.0
 sqlparse==0.4.1
 uritemplate==4.1.1
 urllib3==1.26.7
+
+# for pdf requirements
+arabic-reshaper==2.1.3
+autopep8==1.5.7
+future==0.18.2
+html5lib==1.1
+pycodestyle==2.7.0
+PyPDF2==1.26.0
+python-bidi==0.4.2
+reportlab==3.5.68
+six==1.16.0
+toml==0.10.2
+webencodings==0.5.1
+xhtml2pdf==0.2.5
+
+
+
