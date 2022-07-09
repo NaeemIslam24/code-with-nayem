@@ -22,6 +22,7 @@ ALLOWED_HOSTS = ['localhost','stackpro.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'header',
     'footer',
     'account.apps.AccountConfig',
+    'chat',
     # external apps
     'ckeditor',
     'crispy_forms',
@@ -82,7 +84,15 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'test2.wsgi.application'
+# WSGI_APPLICATION = 'test2.wsgi.application'
+
+ASGI_APPLICATION = 'test2.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # Database
@@ -94,6 +104,8 @@ DATABASES = {
         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
     }
 }
+
+
 
 
 # Password validation

@@ -11,6 +11,7 @@ urlpatterns = [
     path('about/', include('about.urls')),
     path('contact/', include('contact.urls')),
     path('blog/', include('blog.urls')),
+    path('chat/', include('chat.urls')),
     path('pricing/', include('pricing.urls')),
     path('services/', include('services.urls')),
     path('team/', include('team.urls')),

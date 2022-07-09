@@ -3,11 +3,6 @@ from django.contrib.auth.models import User
 import random
 
 
-
-
-
-
-
 class Profile(models.Model):
     user = models.OneToOneField(
         User, null=True, blank=True, on_delete=models.CASCADE)

@@ -114,6 +114,7 @@ def post_detail(request, slug):
     top_footer3 = Top_footer3.objects.order_by()
     top_footer4 = Top_footer4.objects.order_by()
     cate = Category.objects.all()
+
     posts = Post.objects.filter(publish_status=Post.ArticlePublishOptions.PUBLISH)[0:3]
     post = get_object_or_404(Post, slug=slug)
     comments = post.comment_here.filter(approved=True)
